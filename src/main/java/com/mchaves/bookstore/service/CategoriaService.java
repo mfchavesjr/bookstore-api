@@ -1,6 +1,7 @@
 package com.mchaves.bookstore.service;
 
 import com.mchaves.bookstore.domain.Categoria;
+import com.mchaves.bookstore.dto.CategoriaDTO;
 import com.mchaves.bookstore.exception.ObjectNotFoundException;
 import com.mchaves.bookstore.repository.CategoriaRepostiory;
 import org.springframework.beans.factory.annotation.Autowired;
