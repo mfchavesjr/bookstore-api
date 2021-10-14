@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.servlet.ServletRequest;
 
 @ControllerAdvice
-public class handleObjectNotFoundException {
+public class HandleObjectNotFoundException {
 
     @ExceptionHandler({ObjectNotFoundException.class})
     public ResponseEntity<StandardError> objectNotFoundException(ObjectNotFoundException exception

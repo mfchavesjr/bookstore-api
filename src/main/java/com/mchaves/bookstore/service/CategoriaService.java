@@ -2,10 +2,12 @@ package com.mchaves.bookstore.service;
 
 import com.mchaves.bookstore.domain.Categoria;
 import com.mchaves.bookstore.dto.CategoriaDTO;
+import com.mchaves.bookstore.exception.DataIntegrityViolationExceptionMChaves;
 import com.mchaves.bookstore.exception.ObjectNotFoundException;
 import com.mchaves.bookstore.repository.CategoriaRepostiory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,6 +39,11 @@ public class CategoriaService {
     }
 
     public void delete(Integer id) {
-        categoriaRepostiory.delete(findById(id));
+        try {
+            categoriaRepostiory.delete(findById(id));
+        }catch (DataIntegrityViolationException exception){
+            throw new DataIntegrityViolationExceptionMChaves("Recurso não pode ser excluído, contém livros associados");
+        }
+
     }
 }
