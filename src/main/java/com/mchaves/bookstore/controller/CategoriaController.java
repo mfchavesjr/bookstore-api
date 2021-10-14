@@ -4,6 +4,7 @@ import com.mchaves.bookstore.domain.Categoria;
 import com.mchaves.bookstore.dto.CategoriaDTO;
 import com.mchaves.bookstore.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -47,5 +48,11 @@ public class CategoriaController {
         Categoria categoria = categoriaService.update(categoriaDTO, id);
         CategoriaDTO categoriaDTOCreated = new CategoriaDTO(categoria);
         return ResponseEntity.ok().body(categoriaDTOCreated);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Integer id){
+            categoriaService.delete(id);
     }
 }

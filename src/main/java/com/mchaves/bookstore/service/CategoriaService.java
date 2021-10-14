@@ -35,4 +35,8 @@ public class CategoriaService {
         categoriaRepostiory.save(categoriaSaved);
         return categoriaSaved;
     }
+
+    public void delete(Integer id) {
+        categoriaRepostiory.delete(findById(id));
+    }
 }
