@@ -1,6 +1,7 @@
 package com.mchaves.bookstore.service;
 
 import com.mchaves.bookstore.domain.Categoria;
+import com.mchaves.bookstore.exception.ObjectNotFoundException;
 import com.mchaves.bookstore.repository.CategoriaRepostiory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,8 @@ public class CategoriaService {
     }
 
     public Categoria findById(Integer id) {
-        return categoriaRepostiory.findById(id).orElseThrow();
+        return categoriaRepostiory.findById(id)
+                .orElseThrow(()-> new ObjectNotFoundException("Recurso não encontrado!"));
     }
 
 
