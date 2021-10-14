@@ -4,6 +4,7 @@ import com.mchaves.bookstore.domain.Categoria;
 import com.mchaves.bookstore.dto.CategoriaDTO;
 import com.mchaves.bookstore.exception.ObjectNotFoundException;
 import com.mchaves.bookstore.repository.CategoriaRepostiory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +27,12 @@ public class CategoriaService {
 
     public Categoria save(Categoria categoria) {
         return categoriaRepostiory.save(categoria);
+    }
+
+    public Categoria update(CategoriaDTO categoriaDTO, Integer id) {
+        Categoria categoriaSaved = findById(id);
+        BeanUtils.copyProperties(categoriaDTO, categoriaSaved, "id");
+        categoriaRepostiory.save(categoriaSaved);
+        return categoriaSaved;
     }
 }

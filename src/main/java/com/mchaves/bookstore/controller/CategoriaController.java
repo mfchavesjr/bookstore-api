@@ -41,4 +41,11 @@ public class CategoriaController {
                 .buildAndExpand(categoriaSaved.getId()).toUri();
         return ResponseEntity.created(uri).body(categoriaSaved);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoriaDTO> update(@RequestBody CategoriaDTO categoriaDTO, @PathVariable Integer id){
+        Categoria categoria = categoriaService.update(categoriaDTO, id);
+        CategoriaDTO categoriaDTOCreated = new CategoriaDTO(categoria);
+        return ResponseEntity.ok().body(categoriaDTOCreated);
+    }
 }
