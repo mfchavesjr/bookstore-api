@@ -24,5 +24,7 @@ public class CategoriaService {
                 .orElseThrow(()-> new ObjectNotFoundException("Recurso não encontrado!"));
     }
 
-
+    public Categoria save(Categoria categoria) {
+        return categoriaRepostiory.save(categoria);
+    }
 }
