@@ -1,8 +1,6 @@
 package com.mchaves.bookstore.controller;
 
-import com.mchaves.bookstore.domain.Categoria;
 import com.mchaves.bookstore.domain.Livro;
-import com.mchaves.bookstore.dto.CategoriaDTO;
 import com.mchaves.bookstore.dto.LivroDTO;
 import com.mchaves.bookstore.service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,7 +36,7 @@ public class LivroController {
     }
 
     @PostMapping
-    public ResponseEntity<Livro> create(@RequestBody Livro livro){
+    public ResponseEntity<Livro> create(@Valid @RequestBody Livro livro){
         Livro livroSaved = livroService.save(livro);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
                 .path("/{id}")
@@ -46,7 +45,7 @@ public class LivroController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<LivroDTO> update(@RequestBody LivroDTO livroDTO, @PathVariable Integer id){
+    public ResponseEntity<LivroDTO> update(@Valid @RequestBody LivroDTO livroDTO, @PathVariable Integer id){
         Livro livro = livroService.update(livroDTO, id);
         LivroDTO livroDTOCreated = new LivroDTO(livro);
         return ResponseEntity.ok().body(livroDTOCreated);
