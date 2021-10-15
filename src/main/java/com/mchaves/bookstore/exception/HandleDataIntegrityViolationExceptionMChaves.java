@@ -10,7 +10,7 @@ import javax.servlet.ServletRequest;
 @ControllerAdvice
 public class HandleDataIntegrityViolationExceptionMChaves {
     @ExceptionHandler(DataIntegrityViolationExceptionCategoria.class)
-    public ResponseEntity<StandardError> standardErrorResponseEntity(DataIntegrityViolationExceptionCategoria ex
+    public ResponseEntity<StandardError> dataIntegrityViolationExceptionMChaves(DataIntegrityViolationExceptionCategoria ex
             , ServletRequest servletRequest){
         StandardError error = new StandardError(System.currentTimeMillis()
                 , HttpStatus.BAD_REQUEST.value(), ex.getMessage());
@@ -18,7 +18,7 @@ public class HandleDataIntegrityViolationExceptionMChaves {
     }
 
     @ExceptionHandler(DataIntegrityViolationExceptionLivro.class)
-    public ResponseEntity<StandardError> standardErrorResponseEntity(DataIntegrityViolationExceptionLivro ex
+    public ResponseEntity<StandardError> dataIntegrityViolationExceptionLivro(DataIntegrityViolationExceptionLivro ex
             , ServletRequest servletRequest){
         StandardError error = new StandardError(System.currentTimeMillis()
                 , HttpStatus.BAD_REQUEST.value(), ex.getMessage());
